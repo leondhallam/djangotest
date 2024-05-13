@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import PostListView, PostDetailView
+from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, UserPostListView
 
 app_name = 'itreporting'
 urlpatterns = [
@@ -12,6 +12,10 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('report', PostListView.as_view(), name = 'report'),
     path('issue/<int:pk>', PostDetailView.as_view(), name = 'issue-detail'),
+    path('issue/new', PostCreateView.as_view(), name = 'issue-create'),
+    path('issue/<int:pk>/update/', PostUpdateView.as_view(), name = 'issue-update'),
+    path('issue/<int:pk>/delete/', PostDeleteView.as_view(), name = 'issue-delete'),
+    path('issue/<str:username>', UserPostListView.as_view(), name = 'user-issues'),
 
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
