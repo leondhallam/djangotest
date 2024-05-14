@@ -38,4 +38,5 @@ def profile(request):
         context = {'u_form': u_form, 'p_form': p_form, 'title': 'Student Profile'}
     return render(request, 'users/profile.html', context)
 
-
+def products(request):
+    return render(request, 'users/products.html', {'title': 'Our Products'})
